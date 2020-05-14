@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody playerBody;
-    private Vector3 inputVector;
-    public float speed = 5;
-    public bool jump;
+    [SerializeField] private Vector3 inputVector;
+    [SerializeField]  private float speed = 5;
+    [SerializeField] private bool jump;
+    [SerializeField] private float turnSpeed = 45;
+    [SerializeField] private float jumpForce = 10f;
    
    
    
@@ -25,12 +27,17 @@ public class PlayerMovement : MonoBehaviour
     //This is where the player script should be realizing we are using inputs
     void Update()
     {
-        //We find what input is coming into the computer from the WASD and/or Arrow Keys
-        float verticalInput = Input.GetAxis("Vertical");
-        float horizontalInput = Input.GetAxis("Horizontal");
-        //Our character will move based on WASD, here we get the input but it doesn't happen yet
-        inputVector = new Vector3(horizontalInput * 10f, playerBody.velocity.y, verticalInput * 10f);
-        transform.LookAt(new Vector3(inputVector.x, 0, inputVector.z));
+        float horizantalInput = Input.GetAxis("Horizontal");
+        float forwardInput = Input.GetAxis("Vertical");
+        //We move the vehical forward
+        transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
+        //We turn the vehical
+        transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed * horizantalInput);
+
+
+
+
+
 
         if (Input.GetButtonDown("Jump")){
             jump = true;
@@ -44,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
         //player jumps when on the ground and when they have not already used up their one jump
         if (jump && isGrounded())
         {
-            playerBody.AddForce(Vector3.up * 10f, ForceMode.Impulse);
+            playerBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             jump = false;
         }
         //Player knows they are on the ground because a ray is drawn just under the player to sense if anything is there
