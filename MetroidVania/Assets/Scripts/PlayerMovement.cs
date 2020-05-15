@@ -10,9 +10,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool jump;
     [SerializeField] private float turnSpeed = 45;
     [SerializeField] private float jumpForce = 10f;
-   
-   
-   
+    
+
+
 
     // Start is called before the first frame update
     void Start()
