@@ -956,12 +956,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb44cedb7c32f8f4fb7c0a855212fa4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerBody: {fileID: 1755310034}
+  playerBody: {fileID: 0}
   inputVector: {x: 0, y: 0, z: 0}
   speed: 10
   jump: 0
   turnSpeed: 150
-  jumpForce: 100000
+  jumpForce: 10000
 --- !u!136 &1755310029
 CapsuleCollider:
   m_ObjectHideFlags: 0
