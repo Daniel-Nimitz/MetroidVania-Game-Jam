@@ -961,7 +961,7 @@ MonoBehaviour:
   speed: 10
   jump: 0
   turnSpeed: 150
-  jumpForce: 10
+  jumpForce: 100000
 --- !u!136 &1755310029
 CapsuleCollider:
   m_ObjectHideFlags: 0
