@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //Just making sure we have the rigid body of the game object the script is attached to so we can move it later
         playerBody = gameObject.GetComponent<Rigidbody>();
-       
+        playerBody.AddForce(Vector3.up * jumpForce);
 
     }
 
@@ -34,34 +34,13 @@ public class PlayerMovement : MonoBehaviour
         //We turn the vehical
         transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed * horizantalInput);
 
-
-
-
-
-
-        if (Input.GetButtonDown("Jump")){
-            jump = true;
-        }
-    }
-    //This is where the player should be implementing the inputs we put in
-    private void FixedUpdate()
-    {
-        //this is where the computer actually makes the player moved off of the direstions we put into update
-        playerBody.velocity = inputVector;
-        //player jumps when on the ground and when they have not already used up their one jump
-        if (jump && isGrounded())
+        if (Input.GetButtonDown("Jump"))
         {
-            playerBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            jump = false;
-        }
-        //Player knows they are on the ground because a ray is drawn just under the player to sense if anything is there
-        //This means that we can jump onto platforms as well as the ground easily
-        bool isGrounded()
-        {
+            playerBody.AddForce(Vector3.up * jumpForce);
+            print("Space has been pressed");
 
-            float distance = GetComponent<Collider>().bounds.extents.y + 1f;
-            Ray ray = new Ray(transform.position, Vector3.down);
-            return Physics.Raycast(ray, distance);
         }
+
     }
+ 
 }
