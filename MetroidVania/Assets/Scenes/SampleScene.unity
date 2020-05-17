@@ -962,6 +962,7 @@ MonoBehaviour:
   turnSpeed: 150
   jumpForce: 10000
   isOnGround: 0
+  playerHitPoints: 100
 --- !u!136 &1755310029
 CapsuleCollider:
   m_ObjectHideFlags: 0

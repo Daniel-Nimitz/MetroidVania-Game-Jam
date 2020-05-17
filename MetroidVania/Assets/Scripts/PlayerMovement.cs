@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float turnSpeed = 45;
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private bool isOnGround;
+    [SerializeField] private float playerHitPoints = 100;
 
 
 
@@ -54,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if(other.gameObject.tag == "Enemy"){
             Debug.Log("Player ran into an enemy");
+            playerHitPoints -= 30;
+            
         }
     }
 
