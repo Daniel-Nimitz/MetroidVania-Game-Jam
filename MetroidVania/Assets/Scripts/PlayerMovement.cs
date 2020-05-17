@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -7,10 +8,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody playerBody;
     [SerializeField] private Vector3 inputVector;
     [SerializeField]  private float speed = 5;
-    [SerializeField] private bool jump;
     [SerializeField] private float turnSpeed = 45;
     [SerializeField] private float jumpForce = 10f;
-    
+    [SerializeField] private bool isOnGround;
+
 
 
 
@@ -34,13 +35,26 @@ public class PlayerMovement : MonoBehaviour
         //We turn the vehical
         transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed * horizantalInput);
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && isOnGround)
         {
             playerBody.AddForce(Vector3.up * jumpForce);
             print("Space has been pressed");
-
+            isOnGround = false;
         }
 
+        
+
     }
- 
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        isOnGround = true;
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Enemy"){
+            Debug.Log("Player ran into an enemy");
+        }
+    }
+
 }
