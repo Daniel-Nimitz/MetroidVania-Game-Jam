@@ -1,10 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerGlide : MonoBehaviour
 {
     // Start is called before the first frame update
+    public double gravity = 10;
+    public bool isOnGround;
+    private float flightTime = 0f;
+    public float maxFlightTime = 3.0f;
 
     //Define some private variables here for changes on gravity and directional force.
     void Start()
@@ -15,16 +22,25 @@ public class PlayerGlide : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    //This will change the player's gravity
-    /* Note to Alex: change the players gravity as an if or while loop(if player holds down space).
-     * Player gravity = rigidbody (weight) of player by probably 75% until they land on the ground. 
-     * Maybe even make a little updraft = Force in upwards direction.
-     * Cancel when player hits the ground or a dropbox. */
-    
-    //This will allow the player to change direction while gliding
-    /*Change the way the arrow keys works but just for the glide.
-     * Potentially have them add force to the players direction.
-     * Gliding will be kind of like controlling the win. */
+        
+        //Executes while the player is gliding and sets the gravity to 1/2 of normal.
+        while (Input.GetButtonDown("E") && isOnGround == false && flightTime < maxFlightTime)
+            {
+            gravity *= 0.5;
+            // a line for the animation to initialize
+            flightTime += Time.deltaTime;
+            }
+
+        //Stops glide if the player is gliding more than the maximum duration
+        if (Input.GetButtonUp("E") || flightTime >= maxFlightTime  && isOnGround == false)
+        {
+            //Stop the gliding animation
+            //Begin the falling animation
+        }
+
+        //Returns the gravity to normal and the flight time counter to 0.
+        flightTime = 0;
+        gravity = 10;
 
     }
 }
