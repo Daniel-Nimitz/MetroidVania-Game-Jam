@@ -46,7 +46,6 @@ public class PlayerMovement : MonoBehaviour
         }
         if (playerHitPoints <= 0) {
             gameManager.GameOver();
-            print("GAME OVER!");
         }
 
         

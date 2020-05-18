@@ -23,5 +23,6 @@ public class GameManager : MonoBehaviour
     public void GameOver() {
         gameOverText.gameObject.SetActive(true);
         Debug.Log("Game Ends");
+        Time.timeScale = 0;
     }
 }
