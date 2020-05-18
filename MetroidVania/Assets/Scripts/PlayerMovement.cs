@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private bool isOnGround;
     [SerializeField] private float playerHitPoints = 100;
+    [SerializeField] float enemyPushForce = 100;
+    public GameManager gameManager;
+    
 
 
 
@@ -41,6 +44,10 @@ public class PlayerMovement : MonoBehaviour
             print("Space has been pressed");
             isOnGround = false;
         }
+        if (playerHitPoints <= 0) {
+            gameManager.GameOver();
+            print("GAME OVER!");
+        }
 
         
 
@@ -49,14 +56,13 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         isOnGround = true;
-    }
-    void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag == "Enemy"){
+        if (collision.gameObject.tag == "Enemy")
+        {
             Debug.Log("Player ran into an enemy");
             playerHitPoints -= 30;
-            
+            playerBody.AddForce((collision.gameObject.transform.position - transform.position) * enemyPushForce, ForceMode.Impulse);
         }
+        
     }
 
 }

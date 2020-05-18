@@ -384,7 +384,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: 0.2297529, y: 0.0000000036001078, z: 1.3800767e-10, w: 0.9732491}
+  m_LocalRotation: {x: 0.2297529, y: 0.0000000036001255, z: 1.3794062e-10, w: 0.9732491}
   m_LocalPosition: {x: 0, y: 2.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -603,7 +603,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1166791782}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -715,7 +715,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1241550846}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -808,7 +808,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525612620}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -963,6 +963,7 @@ MonoBehaviour:
   jumpForce: 10000
   isOnGround: 0
   playerHitPoints: 100
+  enemyPushForce: 100
 --- !u!136 &1755310029
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1128,7 +1129,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2080221886}
-  m_LocalRotation: {x: 0.2297529, y: 0.0000000036001078, z: 1.3800767e-10, w: 0.9732491}
+  m_LocalRotation: {x: 0.2297529, y: 0.0000000036001255, z: 1.3794062e-10, w: 0.9732491}
   m_LocalPosition: {x: 0, y: 2.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
