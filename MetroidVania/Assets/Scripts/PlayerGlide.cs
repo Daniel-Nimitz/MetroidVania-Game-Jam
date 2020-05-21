@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 public class PlayerGlide : MonoBehaviour
 {
     // Start is called before the first frame update
-    public double gravity = 10;
+    private bool hasGlide;
     public bool isOnGround;
     private float flightTime = 0f;
     public float maxFlightTime = 3.0f;
@@ -24,9 +24,9 @@ public class PlayerGlide : MonoBehaviour
     {
         
         //Executes while the player is gliding and sets the gravity to 1/2 of normal.
-        while (Input.GetButtonDown("E") && isOnGround == false && flightTime < maxFlightTime)
+        while (Input.GetButtonDown("E") && isOnGround == false && flightTime < maxFlightTime && hasGlide)
             {
-            gravity *= 0.5;
+            Physics.gravity = new Vector3(0, -0.5F, 0);
             // a line for the animation to initialize
             flightTime += Time.deltaTime;
             }
@@ -40,7 +40,6 @@ public class PlayerGlide : MonoBehaviour
 
         //Returns the gravity to normal and the flight time counter to 0.
         flightTime = 0;
-        gravity = 10;
 
     }
 }

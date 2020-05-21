@@ -10,10 +10,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]  private float speed = 5;
     [SerializeField] private float turnSpeed = 45;
     [SerializeField] private float jumpForce = 10f;
+<<<<<<< HEAD
     [SerializeField] private bool isOnGround;
     [SerializeField] private float playerHitPoints = 100;
     [SerializeField] float enemyPushForce = 100;
     public GameManager gameManager;
+=======
+    private int jumpCount = 0;
+>>>>>>> gliding2
     
 
 

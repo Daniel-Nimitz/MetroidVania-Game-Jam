@@ -38,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
         //We turn the vehical
         transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed * horizantalInput);
 
-<<<<<<< HEAD
         if (Input.GetButtonDown("Jump") && isOnGround)
         {
             playerBody.AddForce(Vector3.up * jumpForce);
@@ -63,16 +62,6 @@ public class PlayerMovement : MonoBehaviour
             playerBody.AddForce((collision.gameObject.transform.position - transform.position) * enemyPushForce, ForceMode.Impulse);
         }
         
-=======
-        if (Input.GetButtonDown("Jump") && jumpCount <= 2.0)
-        {
-            playerBody.AddForce(Vector3.up * jumpForce);
-            print("Space has been pressed");
-            jumpCount++;
-
-        }
-        //Need to add a statement for a bool if player is on ground reset jumpCount to 0.
->>>>>>> gliding2
     }
 
 }
