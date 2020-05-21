@@ -6,11 +6,12 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody playerBody;
     [SerializeField] private Vector3 inputVector;
-    [SerializeField]  private float speed = 5;
+    [SerializeField]  private float speed = 10;
     [SerializeField] private bool jump;
     [SerializeField] private float turnSpeed = 45;
     [SerializeField] private float jumpForce = 10f;
-    
+    public camSwitch cs;
+
 
 
 
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
         //Just making sure we have the rigid body of the game object the script is attached to so we can move it later
         playerBody = gameObject.GetComponent<Rigidbody>();
         playerBody.AddForce(Vector3.up * jumpForce);
+       
 
     }
 
@@ -40,7 +42,15 @@ public class PlayerMovement : MonoBehaviour
             print("Space has been pressed");
 
         }
-
+        if (cs.inSky == true)
+        {
+            speed = 0;
+        }
+        else
+        {
+            speed = 10;
+        }
+        
     }
  
 }

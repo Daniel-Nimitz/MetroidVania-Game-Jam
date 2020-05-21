@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class camSwitch : MonoBehaviour
 {
     //this calls the animator so we can refrence it below
     Animator anim;
+    public bool inSky = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -18,16 +21,21 @@ public class camSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("o"))
+        if (inSky == false && Input.GetKeyDown("o"))
         {
             //moves the camera up to the sky
             anim.SetBool("camTransition", true);
+            inSky = true;
+            
         }
-        if (Input.GetKeyDown("t"))
+
+        else if (inSky == true && Input.GetKeyDown("o"))
         {
-            //moves the camera back down to the player
             anim.SetBool("camTransition", false);
+            inSky = false;
         }
+        
     }
+
 
 }
