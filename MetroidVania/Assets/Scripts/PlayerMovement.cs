@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool isOnGround;
     [SerializeField] private float playerHitPoints = 100;
     [SerializeField] float enemyPushForce = 100;
+    private int jumpCount = 0;
     public GameManager gameManager;
     public camSwitch cs;
 
@@ -42,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         //We turn the vehical
         transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed * horizantalInput);
 
-        if (Input.GetButtonDown("Jump") && jumpCount <= 2.0)
+        if (Input.GetButtonDown("Jump") && jumpCount <= 2.0 && isOnGround)
         {
             playerBody.AddForce(Vector3.up * jumpForce);
             print("Space has been pressed");
