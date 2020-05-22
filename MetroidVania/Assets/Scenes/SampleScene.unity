@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb01d9cdf65bf5342a98758f7ccb981f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inSky: 0
 --- !u!1 &132766438
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +244,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 132766438}
-  m_LocalRotation: {x: 0.21488494, y: 0.18672474, z: -0.04189192, w: 0.9577074}
+  m_LocalRotation: {x: 0.21488498, y: 0.18672468, z: -0.041891914, w: 0.9577074}
   m_LocalPosition: {x: 98.7, y: 10.700985, z: 36.758926}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -402,7 +403,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 191612899}
-  m_LocalRotation: {x: 0.18512018, y: 0.049392413, z: -0.0064903717, w: 0.9814524}
+  m_LocalRotation: {x: 0.18512015, y: 0.049392376, z: -0.0064903633, w: 0.9814524}
   m_LocalPosition: {x: 98.7, y: 4.99, z: 40.980003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -674,7 +675,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: 0.18512018, y: 0.049392413, z: -0.0064903717, w: 0.9814524}
+  m_LocalRotation: {x: 0.18512015, y: 0.049392376, z: -0.0064903633, w: 0.9814524}
   m_LocalPosition: {x: 98.7, y: 4.99, z: 40.980003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1996,6 +1997,7 @@ MonoBehaviour:
   speed: 10
   turnSpeed: 150
   jumpForce: 10000
+  cs: {fileID: 50267733}
   isOnGround: 0
   playerHitPoints: 100
   enemyPushForce: 100
