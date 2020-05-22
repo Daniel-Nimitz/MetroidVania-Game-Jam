@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool isOnGround;
     [SerializeField] private float playerHitPoints = 100;
     [SerializeField] float enemyPushForce = 100;
+    public int ingredient;
     public GameManager gameManager;
     public camSwitch cs;
    
@@ -71,6 +72,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 speed = 10;
             }
+        }
+        else if (collision.gameObject.tag == "Ingredient") {
+            Debug.Log("Player collided with an ingredient");
+            collision.gameObject.SetActive(false);
+            ingredient++;
         }
         
     }
