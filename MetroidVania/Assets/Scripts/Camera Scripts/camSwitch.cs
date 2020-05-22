@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// THis is the bug vision. Press "o" to have your bug fly up and unlock a blocked door. While doing this the player can't move forward or back but can turn in a cirlce. 
+/// </summary>
 public class camSwitch : MonoBehaviour
 {
     //this calls the animator so we can refrence it below
@@ -10,6 +13,7 @@ public class camSwitch : MonoBehaviour
     public bool inSky = false;
     public GameObject playerObject;
     PlayerMovement moveScript;
+    
 
 
     // Start is called before the first frame update
@@ -18,8 +22,7 @@ public class camSwitch : MonoBehaviour
         //I honestly don't know what this does but its important
         anim = GetComponent<Animator>();
         moveScript = playerObject.GetComponent<PlayerMovement>();
-      
-
+       
     }
 
     // Update is called once per frame
@@ -31,6 +34,8 @@ public class camSwitch : MonoBehaviour
             anim.SetBool("camTransition", true);
             inSky = true;
             moveScript.speed = 0f;
+          
+            
 
         }
 
@@ -40,6 +45,7 @@ public class camSwitch : MonoBehaviour
             anim.SetBool("camTransition", false);
             inSky = false;
             moveScript.speed = 10f;
+         
         }
         
     }
