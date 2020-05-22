@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody playerBody;
     [SerializeField] private Vector3 inputVector;
-    [SerializeField]  private float speed = 10;
+    [SerializeField]  private float speed = 5;
     [SerializeField] private bool jump;
     [SerializeField] private float turnSpeed = 45;
     [SerializeField] private float jumpForce = 10f;
@@ -42,10 +42,11 @@ public class PlayerMovement : MonoBehaviour
         //We turn the vehical
         transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed * horizantalInput);
 
-        if (Input.GetButtonDown("Jump") && isOnGround)
+        if (Input.GetButtonDown("Jump") && jumpCount <= 2.0)
         {
             playerBody.AddForce(Vector3.up * jumpForce);
             print("Space has been pressed");
+            jumpCount++;
             isOnGround = false;
         }
         if (playerHitPoints <= 0) {
@@ -53,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         
-
+        //Need to add a statement for a bool if player is on ground reset jumpCount to 0.
     }
 
     private void OnCollisionEnter(Collision collision)
