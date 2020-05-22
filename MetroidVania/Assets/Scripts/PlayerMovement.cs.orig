@@ -1,29 +1,28 @@
-﻿
+﻿using System.Collections;
+using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody playerBody;
     [SerializeField] private Vector3 inputVector;
-    [SerializeField]  private float speed = 5;
+    [SerializeField]  private float speed = 10;
     [SerializeField] private bool jump;
     [SerializeField] private float turnSpeed = 45;
-<<<<<<< HEAD
-=======
     [SerializeField] private float jumpForce = 10f;
+<<<<<<< HEAD
     [SerializeField] private bool isOnGround;
     [SerializeField] private float playerHitPoints = 100;
     [SerializeField] float enemyPushForce = 100;
-    public int ingredient;
-    private int jumpCount = 0;
     public GameManager gameManager;
-<<<<<<< HEAD
->>>>>>> master
-    
-=======
     public camSwitch cs;
 
->>>>>>> a7033e11ac6e2ac1246748190570a46d0be31b27
+
+=======
+    private int jumpCount = 0;
+    
+>>>>>>> origin/gliding2
 
 
 
@@ -32,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //Just making sure we have the rigid body of the game object the script is attached to so we can move it later
         playerBody = gameObject.GetComponent<Rigidbody>();
-        
+        playerBody.AddForce(Vector3.up * jumpForce);
        
 
     }
@@ -47,24 +46,12 @@ public class PlayerMovement : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
         //We turn the vehical
         transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed * horizantalInput);
-<<<<<<< HEAD
-    }
- 
-=======
 
-<<<<<<< HEAD
 <<<<<<< HEAD
         if (Input.GetButtonDown("Jump") && isOnGround)
         {
             playerBody.AddForce(Vector3.up * jumpForce);
             print("Space has been pressed");
-=======
-        if (Input.GetButtonDown("Jump") && jumpCount <= 2.0 && isOnGround)
-        {
-            playerBody.AddForce(Vector3.up * jumpForce);
-            print("Space has been pressed");
-            jumpCount++;
->>>>>>> a7033e11ac6e2ac1246748190570a46d0be31b27
             isOnGround = false;
         }
         if (playerHitPoints <= 0) {
@@ -72,7 +59,17 @@ public class PlayerMovement : MonoBehaviour
         }
 
         
+
+=======
+        if (Input.GetButtonDown("Jump") && jumpCount <= 2.0)
+        {
+            playerBody.AddForce(Vector3.up * jumpForce);
+            print("Space has been pressed");
+            jumpCount++;
+
+        }
         //Need to add a statement for a bool if player is on ground reset jumpCount to 0.
+>>>>>>> origin/gliding2
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -92,28 +89,8 @@ public class PlayerMovement : MonoBehaviour
                 speed = 10;
             }
         }
-        else if (collision.gameObject.tag == "Ingredient") {
-            Debug.Log("player picked up an ingredient");
-            collision.gameObject.SetActive(false);
-            ingredient++;
-        }
         
-        
-<<<<<<< HEAD
-=======
-        if (Input.GetButtonDown("Jump") && jumpCount <= 2.0)
-        {
-            playerBody.AddForce(Vector3.up * jumpForce);
-            print("Space has been pressed");
-            jumpCount++;
-
-        }
-        //Need to add a statement for a bool if player is on ground reset jumpCount to 0.
->>>>>>> gliding2
-=======
->>>>>>> a7033e11ac6e2ac1246748190570a46d0be31b27
     }
        
         
->>>>>>> master
 }

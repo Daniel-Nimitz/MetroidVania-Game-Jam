@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -245,11 +245,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 132766438}
   m_LocalRotation: {x: 0.21488498, y: 0.18672468, z: -0.041891914, w: 0.9577074}
-<<<<<<< HEAD
-  m_LocalPosition: {x: 98.7, y: 9.700985, z: 36.758926}
-=======
   m_LocalPosition: {x: 98.7, y: 10.700985, z: 36.758926}
->>>>>>> master
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 355225747}
@@ -407,13 +403,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 191612899}
-<<<<<<< HEAD
-  m_LocalRotation: {x: 0.1851202, y: 0.049392395, z: -0.0064903684, w: 0.9814524}
-  m_LocalPosition: {x: 98.7, y: 3.99, z: 40.980003}
-=======
   m_LocalRotation: {x: 0.18512015, y: 0.049392376, z: -0.0064903633, w: 0.9814524}
   m_LocalPosition: {x: 98.7, y: 4.99, z: 40.980003}
->>>>>>> master
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1727616533}
@@ -684,21 +675,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-<<<<<<< HEAD
-  m_LocalRotation: {x: 0.1851202, y: 0.049392395, z: -0.0064903684, w: 0.9814524}
-  m_LocalPosition: {x: 98.7, y: 3.99, z: 40.980003}
-=======
-<<<<<<< HEAD
-  m_LocalRotation: {x: 0.18512018, y: 0.049392413, z: -0.0064903717, w: 0.9814524}
-=======
   m_LocalRotation: {x: 0.18512015, y: 0.049392376, z: -0.0064903633, w: 0.9814524}
->>>>>>> a7033e11ac6e2ac1246748190570a46d0be31b27
   m_LocalPosition: {x: 98.7, y: 4.99, z: 40.980003}
->>>>>>> master
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &534669906
 MonoBehaviour:
@@ -746,9 +728,9 @@ GameObject:
   - component: {fileID: 587411158}
   - component: {fileID: 587411157}
   - component: {fileID: 587411156}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Ground
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1991,10 +1973,9 @@ GameObject:
   - component: {fileID: 1755310028}
   - component: {fileID: 1755310033}
   - component: {fileID: 1755310034}
-  - component: {fileID: 1755310035}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2008,24 +1989,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1755310027}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dc1605f7b20b724484c4203774fa47f, type: 3}
+  m_Script: {fileID: 11500000, guid: fb44cedb7c32f8f4fb7c0a855212fa4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerBody: {fileID: 0}
   inputVector: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
-  speed: 5
-  turnSpeed: 45
-=======
   speed: 10
   turnSpeed: 150
   jumpForce: 10000
-  cs: {fileID: 50267733}
+<<<<<<< HEAD
   isOnGround: 0
   playerHitPoints: 100
   enemyPushForce: 100
   gameManager: {fileID: 1534861174}
->>>>>>> master
+=======
+  cs: {fileID: 50267733}
+>>>>>>> Tanner
 --- !u!136 &1755310029
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2095,7 +2074,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1755310027}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 98.7, y: 1, z: 44.9}
+  m_LocalPosition: {x: 98.7, y: 2, z: 44.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2130,26 +2109,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1755310035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1755310027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3fd4fb0c54af85408d839aae16cb1e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fallMultiple: 0
-  jumpForce: 520
-  col: {fileID: 1755310033}
-  groundLayers:
-    serializedVersion: 2
-    m_Bits: 512
-  heightOffset: 1
-  groundedHeight: 1
 --- !u!1 &1874688714
 GameObject:
   m_ObjectHideFlags: 0
@@ -2255,9 +2214,9 @@ GameObject:
   - component: {fileID: 1887093289}
   - component: {fileID: 1887093288}
   - component: {fileID: 1887093287}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Jump challenge (1)
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2374,7 +2333,7 @@ Terrain:
   m_GameObject: {fileID: 1936289037}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 0}
+  m_TerrainData: {fileID: 15600000, guid: 1e483fb8f6cb8774a809a26f78d5e2b7, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
@@ -2597,36 +2556,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2121870345
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 3258814141849551860}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2121870346}
-  m_Layer: 0
-  m_Name: tree (Missing Prefab)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2121870346
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 3258814141849551860}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2121870345}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3258814141849551860
 PrefabInstance:
