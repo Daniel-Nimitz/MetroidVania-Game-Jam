@@ -7,15 +7,16 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody playerBody;
     [SerializeField] private Vector3 inputVector;
-    [SerializeField]  private float speed = 10;
-    [SerializeField] private bool jump;
+    [SerializeField] public  float speed = 10f;
+    [SerializeField] public bool jump;
     [SerializeField] private float turnSpeed = 45;
-    [SerializeField] private float jumpForce = 10f;
+    [SerializeField] public float jumpForce = 10f;
     [SerializeField] private bool isOnGround;
     [SerializeField] private float playerHitPoints = 100;
     [SerializeField] float enemyPushForce = 100;
     public GameManager gameManager;
     public camSwitch cs;
+   
 
 
 
@@ -27,8 +28,8 @@ public class PlayerMovement : MonoBehaviour
         //Just making sure we have the rigid body of the game object the script is attached to so we can move it later
         playerBody = gameObject.GetComponent<Rigidbody>();
         playerBody.AddForce(Vector3.up * jumpForce);
-       
 
+        
     }
 
     // Update is called once per frame
@@ -48,12 +49,10 @@ public class PlayerMovement : MonoBehaviour
             print("Space has been pressed");
             isOnGround = false;
         }
-        if (playerHitPoints <= 0) {
-            gameManager.GameOver();
-        }
-
-        
-
+        //Refrences the camSwitch script's bool "inSky"
+        //to stop the player moving while using bug vision
+                     
+       
     }
 
     private void OnCollisionEnter(Collision collision)
