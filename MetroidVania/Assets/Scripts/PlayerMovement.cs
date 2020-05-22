@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //Just making sure we have the rigid body of the game object the script is attached to so we can move it later
         playerBody = gameObject.GetComponent<Rigidbody>();
-        playerBody.AddForce(Vector3.up * jumpForce);
+        
        
 
     }
