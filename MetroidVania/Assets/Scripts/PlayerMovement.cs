@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
                 speed = 10;
             }
         }
-        if (collision.gameObject.tag == "Ingredient") {
+        else if (collision.gameObject.tag == "Ingredient") {
             Debug.Log("player picked up an ingredient");
             collision.gameObject.SetActive(false);
             ingredient++;
