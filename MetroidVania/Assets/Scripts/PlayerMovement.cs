@@ -64,16 +64,17 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Player ran into an enemy");
             playerHitPoints -= 30;
             playerBody.AddForce((collision.gameObject.transform.position - transform.position) * enemyPushForce, ForceMode.Impulse);
+            if (cs.inSky == true)
+            {
+                speed = 0;
+            }
+            else
+            {
+                speed = 10;
+            }
         }
         
     }
-        if (cs.inSky == true)
-        {
-            speed = 0;
-        }
-        else
-        {
-            speed = 10;
-        }
+       
         
 }
