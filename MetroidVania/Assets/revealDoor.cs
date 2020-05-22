@@ -24,7 +24,7 @@ public class revealDoor : MonoBehaviour
         if (bugviewScript.inSky == true)
         {
             doorOn.enabled = false;
-            Debug.Log("doors revealed");
+         
             sawDoor = true;
             showDoor.enabled = false;
         }
@@ -43,6 +43,6 @@ public class revealDoor : MonoBehaviour
         doorOn.enabled = true;
         sawDoor = false;
         showDoor.enabled = true;
-        Debug.Log("doors hidden");
+     
     }
 }
