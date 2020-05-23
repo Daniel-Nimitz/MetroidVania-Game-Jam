@@ -24,7 +24,6 @@ public class revealDoor : MonoBehaviour
         if (bugviewScript.inSky == true)
         {
             doorOn.enabled = false;
-         
             sawDoor = true;
             showDoor.enabled = false;
         }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Log
   - Blocker
+  - Bug Runs Here
   layers:
   - Default
   - TransparentFX
