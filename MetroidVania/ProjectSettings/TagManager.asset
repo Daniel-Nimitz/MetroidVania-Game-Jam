@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Enemy
   - Ingredient
+  - Bug Runs Here
   layers:
   - Default
   - TransparentFX
