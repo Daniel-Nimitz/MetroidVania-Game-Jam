@@ -9,8 +9,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector3 inputVector;
     [SerializeField] public  float speed = 10f;
     [SerializeField] public bool jump;
-    [SerializeField]  private float speed = 5;
-    [SerializeField] private bool jump;
     [SerializeField] private float turnSpeed = 45;
     [SerializeField] public float jumpForce = 10f;
     [SerializeField] private bool isOnGround;
