@@ -9,12 +9,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector3 inputVector;
     [SerializeField] public  float speed = 10f;
     [SerializeField] public bool jump;
+    [SerializeField]  private float speed = 5;
+    [SerializeField] private bool jump;
     [SerializeField] private float turnSpeed = 45;
     [SerializeField] public float jumpForce = 10f;
     [SerializeField] private bool isOnGround;
     [SerializeField] private float playerHitPoints = 100;
     [SerializeField] float enemyPushForce = 100;
     public int ingredient;
+    private int jumpCount = 0;
     public GameManager gameManager;
     public camSwitch cs;
    
@@ -28,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //Just making sure we have the rigid body of the game object the script is attached to so we can move it later
         playerBody = gameObject.GetComponent<Rigidbody>();
+
         playerBody.AddForce(Vector3.up * jumpForce);
 
         
@@ -44,16 +48,21 @@ public class PlayerMovement : MonoBehaviour
      
         transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed * horizantalInput);
 
-        if (Input.GetButtonDown("Jump") && isOnGround)
+        if (Input.GetButtonDown("Jump") && jumpCount <= 2.0 && isOnGround)
         {
             playerBody.AddForce(Vector3.up * jumpForce);
             print("Space has been pressed");
+            jumpCount++;
             isOnGround = false;
         }
         //Refrences the camSwitch script's bool "inSky"
         //to stop the player moving while using bug vision
-                     
-       
+        if (playerHitPoints <= 0) {
+            gameManager.GameOver();
+        }
+
+        
+        //Need to add a statement for a bool if player is on ground reset jumpCount to 0.
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -74,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         else if (collision.gameObject.tag == "Ingredient") {
+
             Debug.Log("Player collided with an ingredient");
             collision.gameObject.SetActive(false);
             ingredient++;
