@@ -39,9 +39,9 @@ public class PlayerMovement : MonoBehaviour
     {
         float horizantalInput = Input.GetAxis("Horizontal");
         float forwardInput = Input.GetAxis("Vertical");
-        //We move the vehical forward
-        transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
-        //We turn the vehical
+      //THIS IS THE PROBLEM WHICH MAKES IT THAT WE CANNOT JUMP PROPERLY
+       transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
+     
         transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed * horizantalInput);
 
         if (Input.GetButtonDown("Jump") && isOnGround)
