@@ -25,6 +25,7 @@ public class jumpScript : MonoBehaviour
     {
         if (grounded == true && Input.GetKeyDown(KeyCode.Space))
             playerPhys.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        
     }
 
     //Function to check if the player is grounded.
