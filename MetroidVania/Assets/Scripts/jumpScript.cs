@@ -6,8 +6,8 @@ public class jumpScript : MonoBehaviour
     public float fallMultiple = 2.5f;
     Rigidbody playerPhys;
     public float jumpForce = 520f;
-    private bool grounded;
-    public BoxCollider col;
+    [SerializeField] private bool grounded;
+    public CapsuleCollider col;
     public LayerMask groundLayers;
     public float heightOffset = 1.0f;
     public float groundedHeight = 1.0f;
@@ -16,7 +16,7 @@ public class jumpScript : MonoBehaviour
     void Start()
     {
         playerPhys = GetComponent<Rigidbody>();
-        col = GetComponent<BoxCollider>();
+        col = GetComponent<CapsuleCollider>();
         InvokeRepeating("GroundCheck", 0, 0.1f);
     }
 
