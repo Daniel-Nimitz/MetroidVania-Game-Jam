@@ -28,7 +28,7 @@ public class logTrigger : MonoBehaviour
             bc.size = new Vector3(1f, 1f, 1f);
             bc.center = new Vector3(5.960464e-08f, -0.5f, -8.940697e-08f);
             cc.height = 1f;
-            moveScript.speed = 2f;
+            moveScript.speed = 800f;
             logTriggered = true;
        
             
@@ -39,7 +39,7 @@ public class logTrigger : MonoBehaviour
         bc.size = new Vector3(1f, 2f, 1f);
         bc.center = new Vector3(5.960464e-08f, 0f, -8.940697e-08f);
         cc.height = 2f;
-        moveScript.speed = 10f;
+        moveScript.speed = 1200f;
         logTriggered = false;
      
     }

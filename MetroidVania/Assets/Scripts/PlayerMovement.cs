@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //Just making sure we have the rigid body of the game object the script is attached to so we can move it later
         playerBody = gameObject.GetComponent<Rigidbody>();
-        GetComponent<Rigidbody>().rotation = Quaternion.Euler(0,180,0);
+        
 
 
 
@@ -47,10 +47,10 @@ public class PlayerMovement : MonoBehaviour
         playerFacingAngleY += horizontalInput * turnSpeed;
         Vector3 playerFacingDirection = new Vector3(0, playerFacingAngleY, 0);
         playerBody.rotation = Quaternion.Euler(playerFacingDirection);
-        playerBody.AddRelativeForce(Vector3.forward * speed * verticalInput *Time.deltaTime, ForceMode.Impulse);
-
+        playerBody.AddRelativeForce(Vector3.forward * speed * verticalInput * Time.deltaTime);
+        //playerBody.velocity = new Vector3(0, 0, speed * verticalInput * Time.deltaTime);
     }
-    
+
     private void OnCollisionEnter(Collision collision)
     {
         isOnGround = true;
@@ -78,5 +78,5 @@ public class PlayerMovement : MonoBehaviour
 
     }
 }
-        
+
 
