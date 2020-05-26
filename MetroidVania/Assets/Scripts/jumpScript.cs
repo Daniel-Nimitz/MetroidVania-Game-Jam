@@ -35,7 +35,5 @@ public class jumpScript : MonoBehaviour
             grounded = true;
         else
             grounded = false;
-
-
     }
 }
