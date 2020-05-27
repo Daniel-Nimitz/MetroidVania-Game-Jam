@@ -10,12 +10,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public float speed = 0.01f;
     [SerializeField] public bool jump;
     [SerializeField] private float turnSpeed = 45;
-    [SerializeField] public float jumpForce = 10f;
-    [SerializeField] private bool isOnGround;
-    [SerializeField] private float playerHitPoints = 100;
+    [SerializeField] public float jumpForce = 35000f;
+    [SerializeField] private bool isOnGround = true;
     [SerializeField] float enemyPushForce = 100;
     public int ingredient;
-    private int jumpCount = 0;
     public GameManager gameManager;
     public camSwitch cs;
     public float horizontalInput;
@@ -44,6 +42,11 @@ public class PlayerMovement : MonoBehaviour
         playerBody.rotation = Quaternion.Euler(playerFacingDirection);
         playerBody.AddRelativeForce(Vector3.forward * speed * verticalInput * Time.deltaTime);
         //playerBody.velocity = new Vector3(0, 0, speed * verticalInput * Time.deltaTime);
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround == true)
+        {
+            playerBody.AddForce(Vector3.up * Time.deltaTime * jumpForce);
+            isOnGround = false;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -52,8 +55,6 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             Debug.Log("Player ran into an enemy");
-            playerHitPoints -= 30;
-            playerBody.AddForce((collision.gameObject.transform.position - transform.position) * enemyPushForce, ForceMode.Impulse);
             if (cs.inSky == true)
             {
                 speed = 0;
@@ -69,6 +70,9 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Player collided with an ingredient");
             collision.gameObject.SetActive(false);
             ingredient++;
+        }
+        else if (collision.gameObject.tag == "Ground") {
+            isOnGround = true;
         }
 
     }
