@@ -10,6 +10,7 @@ public class revealDoor : MonoBehaviour
     public BoxCollider doorOn;
     bool sawDoor;
     public MeshRenderer showDoor;
+    public GameObject Player;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,8 @@ public class revealDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (bugviewScript.inSky == true)
+        float distanceFromPlayer = Vector3.Distance(Player.gameObject.transform.position, gameObject.transform.position);
+        if (bugviewScript.inSky == true && sawDoor == false && distanceFromPlayer < 40f)
         {
             doorOn.enabled = false;
             sawDoor = true;
@@ -30,18 +32,16 @@ public class revealDoor : MonoBehaviour
 
         if (sawDoor == true && bugviewScript.inSky == false)
         {
-            Invoke("doorDisappear", 3);
+            //it is a problem because this is invoked 60x per second
+            doorDisappear();
         }
-        
-                 
-        
         
     }
     public void doorDisappear()
     {
-        doorOn.enabled = true;
+        doorOn.enabled = false;
         sawDoor = false;
-        showDoor.enabled = true;
+        showDoor.enabled = false;
      
     }
 }
