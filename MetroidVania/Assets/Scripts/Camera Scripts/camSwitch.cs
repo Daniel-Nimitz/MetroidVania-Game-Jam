@@ -22,7 +22,7 @@ public class camSwitch : MonoBehaviour
         //I honestly don't know what this does but its important
         anim = GetComponent<Animator>();
         moveScript = playerObject.GetComponent<PlayerMovement>();
-       
+        
     }
 
     // Update is called once per frame
@@ -33,7 +33,7 @@ public class camSwitch : MonoBehaviour
             //moves the camera up to the sky
             anim.SetBool("camTransition", true);
             inSky = true;
-            moveScript.speed = 0f;
+            moveScript.speed -= 20;
           
             
 
@@ -44,7 +44,7 @@ public class camSwitch : MonoBehaviour
            //move the camera back to the player
             anim.SetBool("camTransition", false);
             inSky = false;
-            moveScript.speed = 10f;
+            moveScript.speed = 20f;
          
         }
         

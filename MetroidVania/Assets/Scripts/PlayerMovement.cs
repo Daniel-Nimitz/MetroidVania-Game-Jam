@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     float playerFacingAngleY;
     private GameObject FocalPoint;
     public float topSpeed = 10;
+  
    
 
     // Start is called before the first frame update
@@ -52,32 +53,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    //This is where the player script should be realizing we are using inputs
-    //void Update()
-    //{
-    //horizontalInput = Input.GetAxis("Horizontal");
-    // verticalInput = Input.GetAxis("Vertical");
-    // playerFacingAngleY += horizontalInput * turnSpeed;
-    // Vector3 playerFacingDirection = new Vector3(0, playerFacingAngleY, 0);
-    //  playerBody.rotation = Quaternion.Euler(playerFacingDirection);
-    // float moveDirectionX = (FocalPoint.transform.position.x - gameObject.transform.position.x) *speed * verticalInput * Time.deltaTime;
-    //  float MoveDirectionY = jumpForce * Physics.gravity.y;
-    // float moveDirectionZ = (FocalPoint.transform.position.z - gameObject.transform.position.z) * speed * verticalInput * Time.deltaTime;
-    //  Vector3 moveDirection = new Vector3(moveDirectionX, MoveDirectionY, moveDirectionZ);
-
-
-
-    //    playerBody.velocity = moveDirection;
-
-    //  if (Input.GetKeyDown(KeyCode.Space) && isOnGround == true)
-    //  {
-    //      playerBody.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-    //      isOnGround = false;
-    //      print("player has jumped");
-    //  }
-
-    // }
+   
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -91,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                speed = 10;
+                speed = 20;
             }
         }
         else if (collision.gameObject.tag == "Ingredient")
@@ -106,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
             print("player has hit the ground");
         }
 
+      
     }
 }
 
