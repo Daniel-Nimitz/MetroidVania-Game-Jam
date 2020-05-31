@@ -10,6 +10,8 @@ public class logTrigger : MonoBehaviour
     public GameObject playerObject;
     PlayerMovement moveScript;
     public bool logTriggered;
+    public float speedReduction;
+    Vector3 boxSizeChange = new Vector3(0, -1, 0);
    
 
 
@@ -18,30 +20,29 @@ public class logTrigger : MonoBehaviour
         
         moveScript = playerObject.GetComponent<PlayerMovement>();
         
+        
     }
 
     // Start is called before the first frame update
     void OnTriggerEnter (Collider other)
     {
-       
-            //the box and capsule collider both shrink in size and the speed slows down.
-            bc.size = new Vector3(1f, 1f, 1f);
-            bc.center = new Vector3(5.960464e-08f, -0.5f, -8.940697e-08f);
-            cc.height = 1f;
-            moveScript.speed = 800f;
+
+        //the box collider shrinks when it goes into the log
+        bc.size += boxSizeChange;
+            moveScript.speed -= speedReduction;
             logTriggered = true;
        
             
 
     }
+    //Something is wrong with this part of the script
     private void OnTriggerExit(Collider other)
-    {   //the box and capsule collider both grow in size and the speed returns to normal.
-        bc.size = new Vector3(1f, 2f, 1f);
-        bc.center = new Vector3(5.960464e-08f, 0f, -8.940697e-08f);
-        cc.height = 2f;
-        moveScript.speed = 1200f;
+    {   //the box collider changes size gaining the amount of hieght lost at when going into the log
+        bc.size -= boxSizeChange;
+      
+        moveScript.speed += speedReduction;
         logTriggered = false;
      
     }
-
+    
 }
