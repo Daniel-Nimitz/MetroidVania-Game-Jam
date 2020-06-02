@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class logTrigger : MonoBehaviour
 {
-    public BoxCollider bc;
-    public CapsuleCollider cc;
     public GameObject playerObject;
     PlayerMovement moveScript;
     public bool logTriggered;
     public float speedReduction;
-    Vector3 boxSizeChange = new Vector3(0, -1, 0);
+    
+    
    
 
 
@@ -26,22 +25,23 @@ public class logTrigger : MonoBehaviour
     // Start is called before the first frame update
     void OnTriggerEnter (Collider other)
     {
-
-        //the box collider shrinks when it goes into the log
-        bc.size += boxSizeChange;
-            moveScript.speed -= speedReduction;
-            logTriggered = true;
+        //the transform shrinks when it goes into the log
+        playerObject.transform.localScale = new Vector3(1f, .8f, 1f);
+        moveScript.speed -= speedReduction;
+        logTriggered = true;
+        
        
             
 
     }
     //Something is wrong with this part of the script
     private void OnTriggerExit(Collider other)
-    {   //the box collider changes size gaining the amount of hieght lost at when going into the log
-        bc.size -= boxSizeChange;
-      
+    {   //the transform grows when it leaves the log
+
+        playerObject.transform.localScale = new Vector3(1f, 1f, 1f);
         moveScript.speed += speedReduction;
         logTriggered = false;
+        
      
     }
     
