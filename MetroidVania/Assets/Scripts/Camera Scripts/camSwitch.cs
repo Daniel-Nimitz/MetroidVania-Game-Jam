@@ -28,7 +28,7 @@ public class camSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (inSky == false && Input.GetKeyDown("o"))
+        if (inSky == false && Input.GetKeyDown("o") && moveScript.hasShoulderBug)
         {
             //moves the camera up to the sky
             anim.SetBool("camTransition", true);
@@ -39,7 +39,7 @@ public class camSwitch : MonoBehaviour
 
         }
 
-        else if (inSky == true && Input.GetKeyDown("o"))
+        else if (inSky == true && Input.GetKeyDown("o") && moveScript.hasShoulderBug)
         {
            //move the camera back to the player
             anim.SetBool("camTransition", false);

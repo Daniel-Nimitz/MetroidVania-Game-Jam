@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Transactions;
 using Unity.Collections.LowLevel.Unsafe;
@@ -21,12 +22,15 @@ public class PlayerMovement : MonoBehaviour
     public float verticalInput;
     public float topSpeed = 10;
     public GameObject recipeUI; //related to recipe pick up
+    public GameObject shoulderBug;
+    public bool hasShoulderBug;
 
     private float playerFacingAngleY;
     private GameObject FocalPoint;
     private recipeManager recipeScript; //related to recipe pick up
     private bool canDoubleJump;
     private int jumpCount;
+    
     
 
 
@@ -89,14 +93,21 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Player ran into an enemy");
             print("The Player has run into an enemy");
         }
-       
-        else if (collision.gameObject.tag == "Ground") {
+
+        else if (collision.gameObject.tag == "Ground")
+        {
             isOnGround = true;
             print("player has hit the ground");
         }
+        else if (collision.gameObject.tag == "Bug") {
+            print("player has collided with a the Insect");
+            collision.gameObject.SetActive(false);
+            shoulderBug.SetActive(true);
+            hasShoulderBug = true;
+        }
 
-//picking up important game objects
-        else if (collision.gameObject.name == "Recipe A") 
+        //picking up important game objects
+        else if (collision.gameObject.name == "Recipe A")
         {
             Debug.Log("Player collided with an recipe");
             collision.gameObject.SetActive(false);
@@ -106,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
         else if (collision.gameObject.name == "Essence Of Air ")
         {
             collision.gameObject.SetActive(false);
-            recipeScript.Ingredients["Essence Of Air"] = true; 
+            recipeScript.Ingredients["Essence Of Air"] = true;
         }
 
         else if (collision.gameObject.name == "Feather Of Placeholder")
