@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public float jumpForce = 35000f;
     [SerializeField] private bool isOnGround = true;
     [SerializeField] float enemyPushForce = 100;
-    public int ingredient;
     public GameManager gameManager;
     public camSwitch cs;
     public float horizontalInput;
@@ -22,8 +21,10 @@ public class PlayerMovement : MonoBehaviour
     float playerFacingAngleY;
     private GameObject FocalPoint;
     public float topSpeed = 10;
-  
-   
+    public GameObject recipeUI; //related to recipe pick up
+    recipeManager recipeScript; //related to recipe pick up
+    
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +32,11 @@ public class PlayerMovement : MonoBehaviour
         //Just making sure we have the rigid body of the game object the script is attached to so we can move it later
         playerBody = gameObject.GetComponent<Rigidbody>();
         FocalPoint = GameObject.Find("Focal Point");
-    }
+
+        recipeScript = recipeUI.GetComponent<recipeManager>(); //allows recipe and ingrediennt pick up to inform the recipeManager
+     }
+
+
     void FixedUpdate() //using rigidbody? => ONLY FIXEDUPDATE
     {
         horizontalInput = Input.GetAxis("Horizontal");
@@ -70,19 +75,38 @@ public class PlayerMovement : MonoBehaviour
                 speed = 20;
             }
         }
-        else if (collision.gameObject.tag == "Ingredient")
-        {
-
-            Debug.Log("Player collided with an ingredient");
-            collision.gameObject.SetActive(false);
-            ingredient++;
-        }
+       
         else if (collision.gameObject.tag == "Ground") {
             isOnGround = true;
             print("player has hit the ground");
         }
 
-      
+//picking up important game objects
+        else if (collision.gameObject.name == "Recipe A") 
+        {
+            Debug.Log("Player collided with an recipe");
+            collision.gameObject.SetActive(false);
+            recipeScript.hasRecipe = true;
+        }
+
+        else if (collision.gameObject.name == "Essence Of Air ")
+        {
+            collision.gameObject.SetActive(false);
+            recipeScript.Ingredients["Essence Of Air"] = true; 
+        }
+
+        else if (collision.gameObject.name == "Feather Of Placeholder")
+        {
+            collision.gameObject.SetActive(false);
+            recipeScript.Ingredients["Feather of Placeholder"] = true;
+        }
+
+        else if (collision.gameObject.name == "Old Leaves Of The First Tree ")
+        {
+            collision.gameObject.SetActive(false);
+            recipeScript.Ingredients["Old Leaves Of The First Tree"] = true;
+        }
+
     }
 }
 
