@@ -6,13 +6,10 @@ using UnityEngine;
 public class logTrigger : MonoBehaviour
 {
     public GameObject playerObject;
-    PlayerMovement moveScript;
     public bool logTriggered;
     public float speedReduction;
-    
-    
-   
 
+    private PlayerMovement moveScript;
 
     private void Start()
     {

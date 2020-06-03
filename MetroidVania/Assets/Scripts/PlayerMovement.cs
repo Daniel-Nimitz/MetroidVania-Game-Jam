@@ -14,15 +14,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public float jumpForce = 35000f;
     [SerializeField] private bool isOnGround = true;
     [SerializeField] float enemyPushForce = 100;
+
     public GameManager gameManager;
     public camSwitch cs;
     public float horizontalInput;
     public float verticalInput;
-    float playerFacingAngleY;
-    private GameObject FocalPoint;
     public float topSpeed = 10;
     public GameObject recipeUI; //related to recipe pick up
-    recipeManager recipeScript; //related to recipe pick up
+
+    private float playerFacingAngleY;
+    private GameObject FocalPoint;
+    private recipeManager recipeScript; //related to recipe pick up
     private bool canDoubleJump;
     private int jumpCount;
     
@@ -55,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         //This is where we have our information about jumping
+        //This is the first jump
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround && jumpCount < 2)
         {
             playerBody.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
@@ -62,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
             canDoubleJump = true;
             print("player has jumped");
         }
+        //this adds the second jump, will need to add a condition for if they have the right pickup
         else if(Input.GetKeyDown(KeyCode.Space) && !isOnGround && canDoubleJump)
         {
            

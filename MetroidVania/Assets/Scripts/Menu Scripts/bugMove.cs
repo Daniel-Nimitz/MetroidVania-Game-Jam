@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class bugMove : MonoBehaviour
 {
     public float lookRadius = 10f;
+    
     Transform target;
     NavMeshAgent agent;
     Transform player;
