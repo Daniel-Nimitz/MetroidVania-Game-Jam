@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
     public float topSpeed = 10;
     public GameObject recipeUI; //related to recipe pick up
     recipeManager recipeScript; //related to recipe pick up
+    private bool canDoubleJump;
+    private int jumpCount;
     
 
 
@@ -50,12 +52,27 @@ public class PlayerMovement : MonoBehaviour
         playerBody.AddForce(moveDirection, ForceMode.VelocityChange); //force mode change to whatever you want 
         if (playerBody.velocity.magnitude > topSpeed)
             playerBody.velocity = playerBody.velocity.normalized * topSpeed;
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround == true)
+
+
+        //This is where we have our information about jumping
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround && jumpCount < 2)
         {
             playerBody.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
             isOnGround = false;
+            canDoubleJump = true;
             print("player has jumped");
         }
+        else if(Input.GetKeyDown(KeyCode.Space) && !isOnGround && canDoubleJump)
+        {
+           
+                playerBody.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+                canDoubleJump = false;
+                print("player has double jumped");
+        }
+
+
+
+
     }
 
    
@@ -66,14 +83,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             Debug.Log("Player ran into an enemy");
-            if (cs.inSky == true)
-            {
-                speed = 0;
-            }
-            else
-            {
-                speed = 20;
-            }
+            print("The Player has run into an enemy");
         }
        
         else if (collision.gameObject.tag == "Ground") {
