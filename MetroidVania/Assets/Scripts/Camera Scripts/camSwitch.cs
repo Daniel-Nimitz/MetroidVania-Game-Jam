@@ -28,7 +28,7 @@ public class camSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (inSky == false && Input.GetKeyDown("o"))
+        if (moveScript.bugVisionUnlocked == true && inSky == false && Input.GetKeyDown("o"))
         {
             //moves the camera up to the sky
             anim.SetBool("camTransition", true);

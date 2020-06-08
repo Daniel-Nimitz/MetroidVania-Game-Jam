@@ -14,7 +14,11 @@ public class recipeManager : MonoBehaviour
     public GameObject featherCheck;
     public GameObject leafCheck;
     bool found;
-       
+
+    //boxes to acxess the player movement script to enable double jump.
+    private PlayerMovement movementScript;
+    public  GameObject player;
+
     //The dictionary where ingredients will go
     public Dictionary<string, bool> Ingredients = new Dictionary<string, bool>();
 
@@ -30,6 +34,8 @@ void Start()
         Ingredients.Add("Feather of Placeholder", false);
         Ingredients.Add("Old Leaves Of The First Tree", false);
 
+    //the player movement boxes are filled so we can enable double jump.
+        movementScript = player.GetComponent<PlayerMovement>();
           
 
 }
@@ -54,7 +60,7 @@ void Start()
             menuOpen = false;
         }
     
-//If the player has an ingredient then
+//If the player has any ingredient then
         if (Ingredients.TryGetValue("Essence Of Air", out found) && found == true)
         {
             airCheck.SetActive(true);               
@@ -84,8 +90,11 @@ void Start()
         {
             leafCheck.SetActive(false);
         }
-
-    
+//if the player has ALL ingredients then they can double jump
+        if (Ingredients.TryGetValue("Essence Of Air", out found) && Ingredients.TryGetValue("Old Leaves Of The First Tree", out found) && Ingredients.TryGetValue("Feather of Placeholder", out found) && found == true)
+        {
+            movementScript.doubleJumpUnlocked = true;
+        }
 
 
     }

@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     private GameObject FocalPoint;
     private recipeManager recipeScript; //related to recipe pick up
     private bool canDoubleJump;
+    public bool doubleJumpUnlocked; //used by recipeManager scrip
+    public bool bugVisionUnlocked = false; //used by camSwitch script
     private int jumpCount;
     
 
@@ -66,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
             print("player has jumped");
         }
         //this adds the second jump, will need to add a condition for if they have the right pickup
-        else if(Input.GetKeyDown(KeyCode.Space) && !isOnGround && canDoubleJump)
+        else if(Input.GetKeyDown(KeyCode.Space) && !isOnGround && canDoubleJump == true && doubleJumpUnlocked == true)
         {
            
                 playerBody.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
@@ -121,6 +123,12 @@ public class PlayerMovement : MonoBehaviour
             recipeScript.Ingredients["Old Leaves Of The First Tree"] = true;
         }
 
+        else if (collision.gameObject.name == "Bug")
+        {
+            collision.gameObject.SetActive(false);
+            bugVisionUnlocked = true;
+            Debug.Log("Got bug");
+        }
     }
 }
 

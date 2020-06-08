@@ -27,7 +27,7 @@ public class revealDoor : MonoBehaviour
         {
             doorOn.enabled = false;
             sawDoor = true;
-            showDoor.enabled = false;
+            showDoor.enabled = false; 
         }
 
         if (sawDoor == true && bugviewScript.inSky == false)
@@ -37,7 +37,7 @@ public class revealDoor : MonoBehaviour
         }
         
     }
-    public void doorDisappear()
+    public void doorDisappear() // turn some of these to true to have door reappear
     {
         doorOn.enabled = false;
         sawDoor = false;
