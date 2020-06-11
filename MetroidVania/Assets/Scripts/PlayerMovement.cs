@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public float verticalInput;
     public float topSpeed = 10;
     public GameObject recipeUI; //related to recipe pick up
+    public string lastIngredientPickedUp; //Might need to do this as something besides a string, we should check these are being picked up with print statements
 
     private float playerFacingAngleY;
     private GameObject FocalPoint;
