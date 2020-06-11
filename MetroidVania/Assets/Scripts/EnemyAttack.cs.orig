@@ -28,7 +28,10 @@ public class EnemyAttack : MonoBehaviour
     }
     public void Attack() {
         print("Player has been attacked");
+<<<<<<< HEAD
+=======
         int stolenIngredient = Random.Range(0, recipeScript.Ingredients.Count);
+>>>>>>> Environment-Changes
         recipeScript.Ingredients["Old Leaves Of The First Tree"] = false;
     }
 }
