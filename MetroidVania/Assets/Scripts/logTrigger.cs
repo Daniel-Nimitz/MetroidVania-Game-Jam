@@ -24,7 +24,7 @@ public class logTrigger : MonoBehaviour
     {
         //the transform shrinks when it goes into the log
         playerObject.transform.localScale = new Vector3(1f, .8f, 1f);
-        moveScript.speed -= speedReduction;
+        moveScript.topSpeed -= speedReduction;
         logTriggered = true;
         
        
@@ -36,7 +36,7 @@ public class logTrigger : MonoBehaviour
     {   //the transform grows when it leaves the log
 
         playerObject.transform.localScale = new Vector3(1f, 1f, 1f);
-        moveScript.speed += speedReduction;
+        moveScript.topSpeed += speedReduction;
         logTriggered = false;
         
      
