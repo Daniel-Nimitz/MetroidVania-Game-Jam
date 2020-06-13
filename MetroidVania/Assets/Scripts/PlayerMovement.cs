@@ -30,7 +30,12 @@ public class PlayerMovement : MonoBehaviour
     public bool doubleJumpUnlocked; //used by recipeManager scrip
     public bool bugVisionUnlocked = false; //used by camSwitch script
     private int jumpCount;
-    
+
+    //for tutorial message
+    GameObject tutorialObject;
+    tutorialManager tutorialScript;
+
+
 
 
     // Start is called before the first frame update
@@ -41,7 +46,11 @@ public class PlayerMovement : MonoBehaviour
         FocalPoint = GameObject.Find("Focal Point");
 
         recipeScript = recipeUI.GetComponent<recipeManager>(); //allows recipe and ingrediennt pick up to inform the recipeManager
-     }
+
+        //fills boxes for tutorial message
+        tutorialObject = GameObject.Find("Tutorial UI");
+        tutorialScript = tutorialObject.GetComponent<tutorialManager>();
+    }
 
 
     void FixedUpdate() //using rigidbody? => ONLY FIXEDUPDATE
@@ -104,6 +113,9 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Player collided with an recipe");
             collision.gameObject.SetActive(false);
             recipeScript.hasRecipe = true;
+
+            //recipe tutorial
+            tutorialScript.startrecipe();
         }
 
         else if (collision.gameObject.name == "Essence Of Air ")
@@ -128,6 +140,11 @@ public class PlayerMovement : MonoBehaviour
         {
             collision.gameObject.SetActive(false);
             bugVisionUnlocked = true;
+
+            //opens tutioral message
+            tutorialScript.startBug();
+
+            // show how to use the bug vision here
             Debug.Log("Got bug");
         }
     }

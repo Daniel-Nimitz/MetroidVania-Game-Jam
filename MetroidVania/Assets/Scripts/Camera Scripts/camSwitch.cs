@@ -13,7 +13,11 @@ public class camSwitch : MonoBehaviour
     public bool inSky = false;
     public GameObject playerObject;
     PlayerMovement moveScript;
-    
+
+    //for tutorial message
+    GameObject tutorialObject;
+    tutorialManager tutorialScript;
+
 
 
     // Start is called before the first frame update
@@ -22,24 +26,30 @@ public class camSwitch : MonoBehaviour
         //I honestly don't know what this does but its important
         anim = GetComponent<Animator>();
         moveScript = playerObject.GetComponent<PlayerMovement>();
+
+        //fills boxes for tutorial message
+        tutorialObject = GameObject.Find("Tutorial UI");
+        tutorialScript = tutorialObject.GetComponent<tutorialManager>();
         
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (moveScript.bugVisionUnlocked == true && inSky == false && Input.GetKeyDown("o"))
+        if (moveScript.bugVisionUnlocked == true && inSky == false && Input.GetKeyDown(KeyCode.LeftShift))
         {
             //moves the camera up to the sky
             anim.SetBool("camTransition", true);
             inSky = true;
             moveScript.speed -= 20;
-          
-            
+
+            //tutorial message stops
+            tutorialScript.endBug();
 
         }
 
-        else if (inSky == true && Input.GetKeyDown("o"))
+        else if (inSky == true && Input.GetKeyDown(KeyCode.LeftShift))
         {
            //move the camera back to the player
             anim.SetBool("camTransition", false);

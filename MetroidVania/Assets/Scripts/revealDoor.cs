@@ -11,6 +11,7 @@ public class revealDoor : MonoBehaviour
     bool sawDoor;
     public MeshRenderer showDoor;
     public GameObject Player;
+    public GameObject doorGraphic;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,8 @@ public class revealDoor : MonoBehaviour
         {
             doorOn.enabled = false;
             sawDoor = true;
-            showDoor.enabled = false; 
+            showDoor.enabled = false;
+            doorGraphic.SetActive(true);
         }
 
         if (sawDoor == true && bugviewScript.inSky == false)

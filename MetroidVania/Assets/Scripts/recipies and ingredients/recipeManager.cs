@@ -22,12 +22,17 @@ public class recipeManager : MonoBehaviour
     //The dictionary where ingredients will go
     public Dictionary<string, bool> Ingredients = new Dictionary<string, bool>();
 
-        
+
+    //for tutorial message
+    GameObject tutorialObject;
+    tutorialManager tutorialScript;
 
 
 
-// Start is called before the first frame update
-void Start()
+
+
+    // Start is called before the first frame update
+    void Start()
 {   // The dictionary of ingredients is populated.
 
         Ingredients.Add("Essence Of Air", false);
@@ -36,9 +41,12 @@ void Start()
 
     //the player movement boxes are filled so we can enable double jump.
         movementScript = player.GetComponent<PlayerMovement>();
-          
 
-}
+        //fills boxes for tutorial message
+        tutorialObject = GameObject.Find("Tutorial UI");
+        tutorialScript = tutorialObject.GetComponent<tutorialManager>();
+
+    }
 
     // Update is called once per frame
     void Update()
@@ -53,6 +61,9 @@ void Start()
         {
             recipeAPanel.SetActive(true);
             menuOpen = true;
+
+            tutorialScript.endrecipe();
+
         }
         else if (menuOpen == true && Input.GetKeyUp(KeyCode.Tab))   //Tab key closes the canvas if the canvas is already open.
         {
@@ -91,7 +102,7 @@ void Start()
             leafCheck.SetActive(false);
         }
 //if the player has ALL ingredients then they can double jump
-        if (Ingredients.TryGetValue("Essence Of Air", out found) && Ingredients.TryGetValue("Old Leaves Of The First Tree", out found) && Ingredients.TryGetValue("Feather of Placeholder", out found) && found == true)
+        if (Ingredients.TryGetValue("Essence Of Air", out found) && found == true && Ingredients.TryGetValue("Old Leaves Of The First Tree", out found) && found == true && Ingredients.TryGetValue("Feather of Placeholder", out found) && found == true)
         {
             movementScript.doubleJumpUnlocked = true;
         }
