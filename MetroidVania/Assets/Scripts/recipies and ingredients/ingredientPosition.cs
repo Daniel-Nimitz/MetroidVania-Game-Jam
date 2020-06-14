@@ -11,6 +11,11 @@ public class ingredientPosition : MonoBehaviour
     enemyMovement enemyMovement;
     public BoxCollider boxCollider;
 
+    public GameObject featherObject;
+    public GameObject airObject;
+    public GameObject leafObject;
+
+
 
     void Start()
     {
@@ -24,15 +29,34 @@ public class ingredientPosition : MonoBehaviour
     {
         if (colliderObject.gameObject.name == "Enemy")
         {
+           if(enemyMovement.stoleFeather == true)
+            {
+                featherObject.SetActive(true);
+            }
+
+            if (enemyMovement.stoleLeaf == true)
+            {
+                leafObject.SetActive(true);
+            }
+
+            if (enemyMovement.stoleAir == true)
+            {
+                airObject.SetActive(true);
+            }
+
             triggerDisappear();
         
             enemyMovement.stoleFeather = false;
             enemyMovement.stoleAir = false;
             enemyMovement.stoleLeaf = false;
 
-            Debug.Log("ingredients returned");
+           
 
             enemyMovement.Invoke("newPosition", 0f);
+
+            
+            
+            //make is so the ingredine game object reappears <-------------------------
         }
                                   
     }

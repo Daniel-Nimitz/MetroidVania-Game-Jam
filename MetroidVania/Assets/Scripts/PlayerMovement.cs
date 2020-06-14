@@ -21,12 +21,12 @@ public class PlayerMovement : MonoBehaviour
     public float verticalInput;
     public float topSpeed = 10;
     public GameObject recipeUI; //related to recipe pick up
-    public string lastIngredientPickedUp; //Might need to do this as something besides a string, we should check these are being picked up with print statements
+   
 
     private float playerFacingAngleY;
     private GameObject FocalPoint;
     private recipeManager recipeScript; //related to recipe pick up
-    private bool canDoubleJump;
+    private bool canDoubleJump = false;
     public bool doubleJumpUnlocked; //used by recipeManager scrip
     public bool bugVisionUnlocked = false; //used by camSwitch script
     private int jumpCount;
@@ -34,6 +34,11 @@ public class PlayerMovement : MonoBehaviour
     //for tutorial message
     GameObject tutorialObject;
     tutorialManager tutorialScript;
+
+    //testing
+    public bool gotAir;
+    public bool gotFeather;
+    public bool gotLeaf;
 
 
 
@@ -75,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
             playerBody.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
             isOnGround = false;
             canDoubleJump = true;
-            print("player has jumped");
+          
         }
         //this adds the second jump, will need to add a condition for if they have the right pickup
         else if(Input.GetKeyDown(KeyCode.Space) && !isOnGround && canDoubleJump == true && doubleJumpUnlocked == true)
@@ -96,21 +101,16 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         isOnGround = true;
-        if (collision.gameObject.tag == "Enemy")
-        {
-            Debug.Log("Player ran into an enemy");
-            print("The Player has run into an enemy");
-        }
-       
-        else if (collision.gameObject.tag == "Ground") {
+          
+        if(collision.gameObject.tag == "Ground") {
             isOnGround = true;
-            print("player has hit the ground");
+         
         }
 
 //picking up important game objects
         else if (collision.gameObject.name == "Recipe A") 
         {
-            Debug.Log("Player collided with an recipe");
+           
             collision.gameObject.SetActive(false);
             recipeScript.hasRecipe = true;
 
@@ -120,20 +120,22 @@ public class PlayerMovement : MonoBehaviour
 
         else if (collision.gameObject.name == "Essence Of Air ")
         {
+        
             collision.gameObject.SetActive(false);
-            recipeScript.Ingredients["Essence Of Air"] = true; 
+            gotAir = true;
+                        
         }
 
         else if (collision.gameObject.name == "Feather Of Placeholder")
         {
             collision.gameObject.SetActive(false);
-            recipeScript.Ingredients["Feather of Placeholder"] = true;
+            gotFeather = true;
         }
 
         else if (collision.gameObject.name == "Old Leaves Of The First Tree ")
         {
             collision.gameObject.SetActive(false);
-            recipeScript.Ingredients["Old Leaves Of The First Tree"] = true;
+            gotLeaf = true;
         }
 
         else if (collision.gameObject.name == "Bug")
@@ -144,8 +146,8 @@ public class PlayerMovement : MonoBehaviour
             //opens tutioral message
             tutorialScript.startBug();
 
-            // show how to use the bug vision here
-            Debug.Log("Got bug");
+           
+           
         }
     }
 }

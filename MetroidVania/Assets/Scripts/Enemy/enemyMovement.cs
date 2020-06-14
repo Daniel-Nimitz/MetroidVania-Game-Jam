@@ -35,6 +35,13 @@ public class enemyMovement : MonoBehaviour
     //tells the enemy attack script to give the player back the most recent ingrediant
     public bool gotBack;
 
+    //tells the enemy if any has been stolen
+    public bool yesTheif;
+
+    recipeManager recipeScript;
+    public GameObject recipeUI;
+
+    public bool canAttack = false;
     private void Start()
     {        
       
@@ -47,6 +54,8 @@ public class enemyMovement : MonoBehaviour
 
         //the location of the enemy so it stops in place when caught
         stopMove = this.gameObject.transform;
+
+        recipeScript = recipeUI.GetComponent<recipeManager>();
     }
 
     private void Update()
@@ -57,68 +66,92 @@ public class enemyMovement : MonoBehaviour
             newPosition();
         }
 
-       //tells the enemy to return ingredients once it has stolen one. 
-        returningredient();
     }
 
+//enemy moves to the next enemy position  using the array ==================================================================================================
+//==========================================================================================================================================================
+    public void newPosition() 
+    {
+        yesTheif = false;
+      
 
-    public void newPosition() //enemy moves to the next enemy position  using the array
-    { if( gameStarts == true)
+     if( gameStarts == true)
         {
             agent.SetDestination(enemyPosition[0].position);
             gameStarts = false;
             waypoint1 = true;
-            Debug.Log("game starts");
+          
         }
     else if (waypoint1 == true)
         {
             agent.SetDestination(enemyPosition[1].position);
             waypoint1 = false;
             waypoint2 = true;
-            Debug.Log("waypoint 1");
+           
         }
     else if (waypoint2 == true)
         {
             agent.SetDestination(enemyPosition[2].position);
             waypoint2 = false;
             waypoint3 = true;
-            Debug.Log("waypoint 2");
+            
 
         }
     else if (waypoint3 == true)
         {
             agent.SetDestination(enemyPosition[3].position);
             waypoint3 = false;
-            Debug.Log("waypoint 3");
+            
         }
+
+     //make it so enemy can only attack when at new postion <---------------------
+
     }
 
-    void returningredient() //the enemy returns the ingredients based on which ingredient is stolen.
+
+//the enemy returns the ingredients based on which ingredient is stolen.======================================
+//============================================================================================================
+    public void returningredient() 
     {
-        if (stoleFeather == true)
-        {
-            agent.SetDestination(featherPosition.position);
-            Debug.Log("feather position");
-        }
-        else if (stoleAir == true)
+        if (stoleAir == true)
         {
             agent.SetDestination(airPosition.position);
-            Debug.Log("air position");
+            Invoke("yestheif", 2f);
+
+           
+
         }
+        else if (stoleFeather == true)
+        {
+            agent.SetDestination(featherPosition.position);
+            Invoke("yestheif", 2f);
+
+            
+
+        }
+       
         else if (stoleLeaf == true)
         {
             agent.SetDestination(leafPosition.position);
-            Debug.Log("leaf position");
-        }
-        //agent.SetDestination(enemyPosition[Random.Range(0, enemyPosition.Length)].position);
+            Invoke("yestheif", 2f);
 
+           
+
+        }
     }
 
-    private void OnTriggerEnter(Collider colliderdObject)  //for when the enemy is caught by the player
+    void yestheif ()
     {
-       if(colliderdObject.gameObject.name == "Player")// and the enemy has stolen something 
+        yesTheif = true;
+    }
+
+//for when the enemy is caught by the player =================================================================================================
+//============================================================================================================================================
+    private void OnTriggerEnter(Collider colliderdObject) 
+    {
+       if(colliderdObject.gameObject.name == "Player" && yesTheif == true)
         {
-            agent.SetDestination(stopMove.position); //any stops in place
+            agent.SetDestination(stopMove.position); //enemy stops in place
             
             triggerDisappear();
           
@@ -126,12 +159,15 @@ public class enemyMovement : MonoBehaviour
             stoleAir = false;
             stoleLeaf = false;
 
-            gotBack = true; //gives the player back their ingredient
+            recipeScript.giveBack(); //gives the player back their ingredient
 
             Invoke("newPosition", 5f); //enemy moves to next enemy position after 5 sec
+
+            Debug.Log("enemy is caught");
         }
     }
-    // the trigger will disappear and then reappear to avoid being triggered twice or more on accident
+
+// the trigger will disappear and then reappear to avoid being triggered twice or more on accident
     void triggerDisappear()
     {
         boxCollider.enabled = false;
@@ -142,4 +178,6 @@ public class enemyMovement : MonoBehaviour
     {
         boxCollider.enabled = true;
     }
+ //=========================================================================================================
+ //=========================================================================================================
 }
