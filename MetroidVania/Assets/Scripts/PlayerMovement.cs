@@ -35,10 +35,16 @@ public class PlayerMovement : MonoBehaviour
     GameObject tutorialObject;
     tutorialManager tutorialScript;
 
-    //testing
+//for the recipeManger==================
+//======================================
     public bool gotAir;
     public bool gotFeather;
     public bool gotLeaf;
+
+//for player animations ================
+//======================================
+    public GameObject animationObject;
+    Animator anim;
 
 
 
@@ -55,6 +61,8 @@ public class PlayerMovement : MonoBehaviour
         //fills boxes for tutorial message
         tutorialObject = GameObject.Find("Tutorial UI");
         tutorialScript = tutorialObject.GetComponent<tutorialManager>();
+
+        anim = animationObject.GetComponent<Animator>();
     }
 
 
@@ -80,7 +88,8 @@ public class PlayerMovement : MonoBehaviour
             playerBody.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
             isOnGround = false;
             canDoubleJump = true;
-          
+            //makes the player jump up
+            anim.SetBool("jumpAnimation", true);
         }
         //this adds the second jump, will need to add a condition for if they have the right pickup
         else if(Input.GetKeyDown(KeyCode.Space) && !isOnGround && canDoubleJump == true && doubleJumpUnlocked == true)
@@ -91,7 +100,26 @@ public class PlayerMovement : MonoBehaviour
                 print("player has double jumped");
         }
 
+//makes the running animation happen=================================================
+//===================================================================================
+        if(Input.GetKeyDown("w"))
+        {
+            anim.SetBool("runAnimation", true);
+        }
+        else if(Input.GetKeyUp("w"))
+        {
+            anim.SetBool("runAnimation", false);
+        }
 
+        if (Input.GetKeyDown("s"))
+        {
+            anim.SetBool("runBackwardsAnimation", true);
+        }
+
+        else if(Input.GetKeyUp("s"))
+        {
+            anim.SetBool("runBackwardsAnimation", false);
+        }
 
 
     }
@@ -104,7 +132,8 @@ public class PlayerMovement : MonoBehaviour
           
         if(collision.gameObject.tag == "Ground") {
             isOnGround = true;
-         
+            //makes the player land after jumping
+            anim.SetBool("jumpAnimation", false);
         }
 
 //picking up important game objects
