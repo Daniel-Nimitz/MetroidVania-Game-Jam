@@ -46,6 +46,11 @@ public class PlayerMovement : MonoBehaviour
     public GameObject animationObject;
     Animator anim;
 
+    //for pillbug animations===============
+    //=====================================
+    public GameObject bugFriend;
+    Animator buganim;
+
 
 
 
@@ -63,6 +68,8 @@ public class PlayerMovement : MonoBehaviour
         tutorialScript = tutorialObject.GetComponent<tutorialManager>();
 
         anim = animationObject.GetComponent<Animator>();
+
+        buganim = bugFriend.GetComponent<Animator>();
     }
 
 
@@ -174,6 +181,9 @@ public class PlayerMovement : MonoBehaviour
 
             //opens tutioral message
             tutorialScript.startBug();
+
+            bugFriend.SetActive(true);
+          
 
            
            

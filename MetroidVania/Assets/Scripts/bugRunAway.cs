@@ -11,6 +11,8 @@ public class bugRunAway : MonoBehaviour
     Transform player;
     Transform stopMove;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,14 @@ public class bugRunAway : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         stopMove = this.gameObject.transform;
+
+      
+
+
+        
+
+
+
     }
 
     // Update is called once per frame
@@ -28,10 +38,12 @@ public class bugRunAway : MonoBehaviour
         if (distance <= lookRadius)
         {
             agent.SetDestination(target.position);
+           
         }
         else
         {
             agent.SetDestination(stopMove.position);
+            
         }
     }
 

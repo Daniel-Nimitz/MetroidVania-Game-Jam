@@ -19,6 +19,12 @@ public class camSwitch : MonoBehaviour
     tutorialManager tutorialScript;
 
 
+    public GameObject bugfriend;
+
+    public GameObject bugFriendInAir;
+ 
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,8 +36,8 @@ public class camSwitch : MonoBehaviour
         //fills boxes for tutorial message
         tutorialObject = GameObject.Find("Tutorial UI");
         tutorialScript = tutorialObject.GetComponent<tutorialManager>();
-        
 
+        
     }
 
     // Update is called once per frame
@@ -47,6 +53,11 @@ public class camSwitch : MonoBehaviour
             //tutorial message stops
             tutorialScript.endBug();
 
+            bugfriend.SetActive(false);
+            bugFriendInAir.SetActive(true);
+
+
+
         }
 
         else if (inSky == true && Input.GetKeyDown(KeyCode.LeftShift))
@@ -55,7 +66,10 @@ public class camSwitch : MonoBehaviour
             anim.SetBool("camTransition", false);
             inSky = false;
             moveScript.speed = 20f;
-         
+
+            bugfriend.SetActive(true);
+            bugFriendInAir.SetActive(false);
+
         }
         
     }
