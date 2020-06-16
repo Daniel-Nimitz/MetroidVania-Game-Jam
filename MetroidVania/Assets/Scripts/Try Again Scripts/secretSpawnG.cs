@@ -14,7 +14,7 @@ public class secretSpawnG : MonoBehaviour
     }
     private void OnTriggerEnter(Collider colliderObject)
     {
-        Debug.Log("spawnwallG");
+        
         if (colliderObject.name == "Player")
         {
             tryAgainscript.secretSpawnG = true;

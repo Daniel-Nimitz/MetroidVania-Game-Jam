@@ -42,6 +42,12 @@ public class enemyMovement : MonoBehaviour
     public GameObject recipeUI;
 
     public bool canAttack = false;
+
+    //music
+    audioManager audioScript;
+    GameObject audioObject;
+
+
     private void Start()
     {        
       
@@ -56,6 +62,10 @@ public class enemyMovement : MonoBehaviour
         stopMove = this.gameObject.transform;
 
         recipeScript = recipeUI.GetComponent<recipeManager>();
+
+        audioObject = GameObject.Find("AudioManager");
+        audioScript = audioObject.GetComponent<audioManager>();
+
     }
 
     private void Update()
@@ -163,7 +173,8 @@ public class enemyMovement : MonoBehaviour
 
             Invoke("newPosition", 5f); //enemy moves to next enemy position after 5 sec
 
-            Debug.Log("enemy is caught");
+            audioScript.spiritPlaying = false;
+            audioScript.Chimes();
         }
     }
 

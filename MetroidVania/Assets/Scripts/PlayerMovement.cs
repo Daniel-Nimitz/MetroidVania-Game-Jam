@@ -51,12 +51,21 @@ public class PlayerMovement : MonoBehaviour
     public GameObject bugFriend;
     Animator buganim;
 
+//music =====================
+    audioManager audioScript;
+    GameObject audioObject;
+    
+
 
 
 
     // Start is called before the first frame update
     void Start()
     {
+        //music
+        audioObject = GameObject.Find("AudioManager");
+        audioScript = audioObject.GetComponent<audioManager>();
+
         //Just making sure we have the rigid body of the game object the script is attached to so we can move it later
         playerBody = gameObject.GetComponent<Rigidbody>();
         FocalPoint = GameObject.Find("Focal Point");
@@ -70,6 +79,8 @@ public class PlayerMovement : MonoBehaviour
         anim = animationObject.GetComponent<Animator>();
 
         buganim = bugFriend.GetComponent<Animator>();
+
+ 
     }
 
 
@@ -152,6 +163,8 @@ public class PlayerMovement : MonoBehaviour
 
             //recipe tutorial
             tutorialScript.startrecipe();
+
+            audioScript.Chimes();
         }
 
         else if (collision.gameObject.name == "Essence Of Air ")
@@ -159,19 +172,23 @@ public class PlayerMovement : MonoBehaviour
         
             collision.gameObject.SetActive(false);
             gotAir = true;
-                        
+            audioScript.Chimes();
         }
 
         else if (collision.gameObject.name == "Feather Of Placeholder")
         {
             collision.gameObject.SetActive(false);
             gotFeather = true;
+
+            audioScript.Chimes();
         }
 
         else if (collision.gameObject.name == "Old Leaves Of The First Tree ")
         {
             collision.gameObject.SetActive(false);
             gotLeaf = true;
+
+            audioScript.Chimes();
         }
 
         else if (collision.gameObject.name == "Bug")
@@ -183,10 +200,12 @@ public class PlayerMovement : MonoBehaviour
             tutorialScript.startBug();
 
             bugFriend.SetActive(true);
-          
 
-           
-           
+            audioScript.Reward();
+
+
+
+
         }
     }
 }

@@ -13,7 +13,10 @@ public class EnemyAttack : MonoBehaviour
 
     enemyMovement enemyMovementScript;
 
-   
+//music
+    audioManager audioScript;
+    GameObject audioObject;
+
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +24,9 @@ public class EnemyAttack : MonoBehaviour
         recipeScript = recipeUI.GetComponent<recipeManager>();
 
         enemyMovementScript = this.GetComponent<enemyMovement>();
+
+        audioObject = GameObject.Find("AudioManager");
+        audioScript = audioObject.GetComponent<audioManager>();
 
     }
 
@@ -50,7 +56,8 @@ public class EnemyAttack : MonoBehaviour
         {
             recipeScript.removeIngred();
             Debug.Log("The enemy is attacking");
-            
+
+            audioScript.SpiritualEncounter();
         }
     }
 

@@ -15,13 +15,19 @@ public class ingredientPosition : MonoBehaviour
     public GameObject airObject;
     public GameObject leafObject;
 
+    //music
+    audioManager audioScript;
+    GameObject audioObject;
 
 
     void Start()
     {
         Enemy = GameObject.Find("Enemy");
         enemyMovement = Enemy.GetComponent<enemyMovement>();
-            
+
+        audioObject = GameObject.Find("AudioManager");
+        audioScript = audioObject.GetComponent<audioManager>();
+
     }
 
    
@@ -53,6 +59,8 @@ public class ingredientPosition : MonoBehaviour
            
 
             enemyMovement.Invoke("newPosition", 0f);
+
+            audioScript.spiritPlaying = false;
 
             
             

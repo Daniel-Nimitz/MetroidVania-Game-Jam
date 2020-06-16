@@ -51,7 +51,11 @@ public class recipeManager : MonoBehaviour
 
     public bool alreadyStole = false;
 
-    
+    //music
+    audioManager audioScript;
+    GameObject audioObject;
+
+
     void Start()
     {
         enemyMoveScript = enemy.GetComponent<enemyMovement>();
@@ -64,6 +68,9 @@ public class recipeManager : MonoBehaviour
         tutorialScript = tutorialObject.GetComponent<tutorialManager>();
 
         ingredients.Add("placeholder");
+
+        audioObject = GameObject.Find("AudioManager");
+        audioScript = audioObject.GetComponent<audioManager>();
     }
 
    
@@ -123,6 +130,8 @@ public class recipeManager : MonoBehaviour
         if (airCheckTrue == true && leafCheckTrue == true && featherCheckTrue == true)
         {
             movementScript.doubleJumpUnlocked = true;
+
+            audioScript.Reward();
         }
 
        

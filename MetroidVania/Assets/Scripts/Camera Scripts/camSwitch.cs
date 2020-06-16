@@ -22,7 +22,11 @@ public class camSwitch : MonoBehaviour
     public GameObject bugfriend;
 
     public GameObject bugFriendInAir;
- 
+
+    //Music=========
+    //==============
+    audioManager audioScript;
+    GameObject audioObject; 
 
 
 
@@ -36,6 +40,10 @@ public class camSwitch : MonoBehaviour
         //fills boxes for tutorial message
         tutorialObject = GameObject.Find("Tutorial UI");
         tutorialScript = tutorialObject.GetComponent<tutorialManager>();
+
+        //music
+        audioObject = GameObject.Find("AudioManager");
+        audioScript = audioObject.GetComponent<audioManager>();
 
         
     }
@@ -56,7 +64,7 @@ public class camSwitch : MonoBehaviour
             bugfriend.SetActive(false);
             bugFriendInAir.SetActive(true);
 
-
+         
 
         }
 
