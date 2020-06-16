@@ -21,7 +21,8 @@ public class PlayerMovement : MonoBehaviour
     public float verticalInput;
     public float topSpeed = 10;
     public GameObject recipeUI; //related to recipe pick up
-   
+
+    public Rigidbody rb;
 
     private float playerFacingAngleY;
     private GameObject FocalPoint;
@@ -35,14 +36,14 @@ public class PlayerMovement : MonoBehaviour
     GameObject tutorialObject;
     tutorialManager tutorialScript;
 
-//for the recipeManger==================
-//======================================
+    //for the recipeManger==================
+    //======================================
     public bool gotAir;
     public bool gotFeather;
     public bool gotLeaf;
 
-//for player animations ================
-//======================================
+    //for player animations ================
+    //======================================
     public GameObject animationObject;
     Animator anim;
 
@@ -51,10 +52,10 @@ public class PlayerMovement : MonoBehaviour
     public GameObject bugFriend;
     Animator buganim;
 
-//music =====================
+    //music =====================
     audioManager audioScript;
     GameObject audioObject;
-    
+
 
 
 
@@ -80,9 +81,9 @@ public class PlayerMovement : MonoBehaviour
 
         buganim = bugFriend.GetComponent<Animator>();
 
- 
-    }
 
+    }
+  
 
     void FixedUpdate() //using rigidbody? => ONLY FIXEDUPDATE
     {
@@ -108,6 +109,8 @@ public class PlayerMovement : MonoBehaviour
             canDoubleJump = true;
             //makes the player jump up
             anim.SetBool("jumpAnimation", true);
+            
+            
         }
         //this adds the second jump, will need to add a condition for if they have the right pickup
         else if(Input.GetKeyDown(KeyCode.Space) && !isOnGround && canDoubleJump == true && doubleJumpUnlocked == true)
